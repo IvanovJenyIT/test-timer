@@ -1,11 +1,7 @@
 import TimerList from './components/Timer/TimerList';
 
 function App() {
-  return (
-    <>
-      <TimerList />
-    </>
-  );
+  return <TimerList />;
 }
 
 export default App;

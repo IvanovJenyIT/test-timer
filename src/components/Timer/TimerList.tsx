@@ -4,17 +4,20 @@ import { v4 as uuidv4 } from 'uuid';
 import Timer from './Timer';
 
 const TimerList = () => {
-  const [timers, setTimers] = useState<JSX.Element[]>([]);
+  const [timerIds, setTimerIds] = useState<string[]>([]);
 
   const addTimer = () => {
     const id = uuidv4();
-    setTimers([...timers, <Timer key={id} />]);
+    setTimerIds((ids) => [...ids, id]);
   };
 
   const removeTimer = () => {
-    if (timers.length > 0) {
-      setTimers(timers.slice(0, -1));
-    }
+    setTimerIds((ids) => {
+      if (ids.length > 0) {
+        return ids.slice(0, -1);
+      }
+      return ids;
+    });
   };
 
   return (
@@ -25,7 +28,9 @@ const TimerList = () => {
       </HStack>
 
       <HStack spacing="24px" flexWrap="wrap">
-        {timers}
+        {timerIds.map((id) => (
+          <Timer key={id} />
+        ))}
       </HStack>
     </VStack>
   );
