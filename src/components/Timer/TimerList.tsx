@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Button, HStack, VStack } from '@chakra-ui/react';
+import { v4 as uuidv4 } from 'uuid';
 import Timer from './Timer';
 
 const TimerList = () => {
   const [timers, setTimers] = useState<JSX.Element[]>([]);
 
   const addTimer = () => {
-    setTimers([...timers, <Timer key={timers.length} />]);
+    const id = uuidv4();
+    setTimers([...timers, <Timer key={id} />]);
   };
 
   const removeTimer = () => {
